@@ -1,6 +1,4 @@
 Clonar el repositorio
-- [ ] En el mismo repositorio se encuentra el proyecto back-end y front-end
-
 
 ## Para el proyecto back-end
 
