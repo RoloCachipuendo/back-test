@@ -16,11 +16,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "vacuna")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Vacuna {
 
 	@Id
@@ -37,7 +41,7 @@ public class Vacuna {
 	@Column(name = "numDosisVacuna", nullable = false)
 	private Integer numDosisVacuna;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idPersona", nullable = false)
 	@JsonIgnore
 	private Persona persona;

@@ -1,6 +1,7 @@
 package com.reca.kruger.persistence.entity;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -18,10 +19,14 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "persona")
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Persona {
 
@@ -53,7 +58,7 @@ public class Persona {
 	private String celularPersona;
 
 	@Column(name = "estadoVacunacionPersona", nullable = true)
-	private Boolean estadoVacunacionPersona;
+	private String estadoVacunacionPersona;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idRol", nullable = false)
@@ -62,7 +67,7 @@ public class Persona {
 
 	@OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
-	private Set<Vacuna> vacunas;
+	private List<Vacuna> vacunas;
 
 	@OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore

@@ -1,6 +1,5 @@
 package com.reca.kruger.domain.service.imp;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -32,7 +31,7 @@ public class PersonaServiceImp implements IPersonaService {
 	VacunaRepository vacunaRepository;
 
 	@Override
-	public List<Persona> obtenerPersonasPorEstadoVacuna(Boolean estadoVacuna) {
+	public List<Persona> obtenerPersonasPorEstadoVacuna(String estadoVacuna) {
 
 		if (estadoVacuna != null) {
 
@@ -70,7 +69,7 @@ public class PersonaServiceImp implements IPersonaService {
 		try {
 			Rol rol = rolRepository.findByTipoRol(Configuraciones.PERFIL.EMPLEADO.getTipo());
 			empleado.setRol(rol);
-			empleado.setEstadoVacunacionPersona(false);
+			empleado.setEstadoVacunacionPersona(Configuraciones.ESTADO_VACUNA.NO_VACUNADO.getEsatdo());
 			return personaRepository.save(empleado);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -130,6 +129,18 @@ public class PersonaServiceImp implements IPersonaService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	@Override
+	public Persona obtenerEmpleadoPorId(Long idEmpleado) {
+		try {
+			return personaRepository.getById(idEmpleado);
+		} catch (Exception e) {
+			System.out.println("Entra en el error");
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 }

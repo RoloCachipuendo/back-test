@@ -18,4 +18,19 @@ public interface Configuraciones {
 
 	}
 
+	public enum ESTADO_VACUNA {
+		VACUNADO("S"), 
+		NO_VACUNADO("N"),;
+
+		private final String estado;
+
+		private ESTADO_VACUNA(String estado) {
+			this.estado = estado;
+		}
+
+		public String getEsatdo() {
+			return estado;
+		}
+
+	}
 }

@@ -1,9 +1,12 @@
 package com.reca.kruger.domain.service;
 
+import com.reca.kruger.domain.dto.CredencialDto;
 import com.reca.kruger.persistence.entity.Clave;
 
 public interface IClaveService {
 
-	Clave guardarClave(Clave clave,Long idEmpleado);
+	Clave guardarClave(Long idEmpleado);
+
+	CredencialDto validarLogueo(CredencialDto credencial);
 
 }

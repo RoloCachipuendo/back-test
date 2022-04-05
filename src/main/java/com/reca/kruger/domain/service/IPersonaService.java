@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.reca.kruger.config.Configuraciones;
 import com.reca.kruger.domain.dto.PersonaDto;
 import com.reca.kruger.persistence.entity.Persona;
 import com.reca.kruger.persistence.entity.Vacuna;
@@ -15,11 +16,11 @@ public interface IPersonaService {
 	/**
 	 * Metodo par aobtener Empleados por eatdo de vacunación
 	 * 
-	 * @param estadoVacuna estado de la vacuna (true-> vacunado; false-> no
+	 * @param estadoVacuna estado de la vacuna (S-> vacunado; N-> no
 	 *                     vacunado)
 	 * @return List<{@link Persona}>
 	 */
-	public List<Persona> obtenerPersonasPorEstadoVacuna(Boolean estadoVacuna);
+	public List<Persona> obtenerPersonasPorEstadoVacuna(String estadoVacuna);
 
 	/**
 	 * Método para obtener Empleados por el Tipo de Vacuna
@@ -59,6 +60,8 @@ public interface IPersonaService {
 	public boolean eliminarEmpleado(Long idPersona);
 
 	public Persona actualizarEmpleado(PersonaDto personaDto);
+	
+	public Persona obtenerEmpleadoPorId(Long idEmpleado);
 
 	/**
 	 * Método para validar si existe el objeto Vacuna
@@ -67,13 +70,11 @@ public interface IPersonaService {
 	 * @return
 	 */
 	default Vacuna validarExistenciaVacuna(PersonaDto personaDto) {
-		if (personaDto.getEmpleado().getEstadoVacunacionPersona() && personaDto.getVacuna() != null) {
+		if (personaDto.getEmpleado().getEstadoVacunacionPersona()
+				.equals(Configuraciones.ESTADO_VACUNA.VACUNADO.getEsatdo()) && personaDto.getVacuna() != null) {
 			return personaDto.getVacuna();
 		} else
 			return null;
 	}
-	
-	
-	
 
 }

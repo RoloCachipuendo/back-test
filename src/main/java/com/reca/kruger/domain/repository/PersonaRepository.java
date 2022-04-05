@@ -7,13 +7,15 @@ import java.util.Date;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import com.reca.kruger.persistence.entity.Persona;
 
-public interface PersonaRepository extends JpaRepository<Persona, Long> {
 
-	List<Persona> findByEstadoVacunacionPersona(Boolean estadoVacuna);
+public interface PersonaRepository extends JpaRepository<Persona, Long>, JpaSpecificationExecutor<Persona> {
+
+	List<Persona> findByEstadoVacunacionPersona(String estadoVacuna);
 
 	List<Persona> findByVacunas_TipoVacuna(String tipoVacuna);
 

@@ -17,11 +17,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "clave")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Clave {
 
 	@Id
@@ -35,7 +41,7 @@ public class Clave {
 	@Column(name = "descripcionClave", nullable = false)
 	private String descripcionClave;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idPersona", nullable = false)
 	@JsonIgnore
 	private Persona persona;
